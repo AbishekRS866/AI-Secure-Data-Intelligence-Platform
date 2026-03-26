@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # AI Secure Data Intelligence Platform - Beginner's Guide 🚀
 
 Welcome to your 1-day MVP of the AI Secure Data Intelligence Platform! This guide will explain each part of the project, how to run it, and how to test it.
@@ -82,3 +83,6 @@ Even without the frontend, you can test the backend directly using Postman.
 7. Observe the clean JSON response showing Risk Score, Findings, and Summary!
 
 Enjoy your powerful MVP! 🌟
+=======
+# AI-Secure-Data-Intelligence-Platform
+>>>>>>> 04c02bcd5699d8a85227af4fd8ad23b1321d6e54
