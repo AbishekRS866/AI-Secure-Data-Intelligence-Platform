@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const response = await fetch('http://localhost:8080/api/analyze', {
+            const response = await fetch("/api/analyze", {
                 method: 'POST',
                 body: formData
             });
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
             try {
                 const data = await localAnalyze(file, text);
                 displayResults(data);
-            } catch(e) {
+            } catch (e) {
                 console.error(e);
                 alert('An error occurred during local analysis.');
             }
@@ -96,14 +96,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (file) {
             content = await file.text();
         }
-        
+
         const allFindings = [];
         if (!content || content.trim() === '') {
             return { summary: "No content provided.", findings: [], riskScore: 0, riskLevel: "LOW", insights: [] };
         }
 
         const lines = content.split(/\r?\n/);
-        
+
         function checkRegex(pattern, line, lineNumber, type, severity, description) {
             const regex = new RegExp(pattern, 'g');
             let match;
@@ -137,8 +137,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         let level = score >= 80 ? "CRITICAL" : (score >= 50 ? "HIGH" : (score >= 20 ? "MEDIUM" : "LOW"));
 
-        let summary = allFindings.length === 0 
-            ? "No sensitive data or security risks detected in the analyzed logs. The logs appear clean." 
+        let summary = allFindings.length === 0
+            ? "No sensitive data or security risks detected in the analyzed logs. The logs appear clean."
             : `Analyzed log file and found ${allFindings.length} potential security issues. The overall risk score is ${score}/100. Immediate attention recommended for Critical and High severity findings.`;
 
         const insights = [];
