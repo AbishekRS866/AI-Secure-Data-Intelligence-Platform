@@ -4,6 +4,9 @@ WORKDIR /app
 
 COPY . .
 
+# ✅ IMPORTANT FIX (permission issue)
+RUN chmod +x mvnw
+
 RUN ./mvnw clean install -DskipTests
 
 EXPOSE 8080
