@@ -1,5 +1,16 @@
 $ErrorActionPreference = "Stop"
 
+# Auto-fix JAVA_HOME if it's pointing to the MSI installer or is missing
+$currentJavaHome = [Environment]::GetEnvironmentVariable("JAVA_HOME")
+if ([string]::IsNullOrWhiteSpace($currentJavaHome) -or $currentJavaHome.EndsWith(".msi")) {
+    Write-Host "Notice: Incorrect JAVA_HOME detected. Auto-fixing for this session..."
+    if (Test-Path "C:\Program Files\Java\jdk-17") {
+        $env:JAVA_HOME = "C:\Program Files\Java\jdk-17"
+    } elseif (Test-Path "C:\Program Files\Java\jdk-24") {
+        $env:JAVA_HOME = "C:\Program Files\Java\jdk-24"
+    }
+}
+
 $MavenDir = ".\apache-maven-3.9.6"
 $MavenZip = "maven.zip"
 
